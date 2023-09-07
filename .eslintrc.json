@@ -6,6 +6,7 @@
     "public/**/*"
   ],
   "rules": {
-    "no-var": ["off"]
+    "no-var": ["off"],
+    "linebreak-style": ["error", "windows"]
   }
 }
