@@ -9,6 +9,10 @@
     --custom-gw-primary: #3a051f;
 }
 
+body {
+    color: var(--custom-text-white) !important;
+}
+
 /* 기본 백그라운드 */
 .py-5, .py-4 {
     background-color: var(--custom-dark-background) !important;
