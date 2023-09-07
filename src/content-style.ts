@@ -28,6 +28,12 @@ function main() {
             document.querySelector('head')?.append(style);
           }
         });
+        // 커스텀 디자인
+        const style = document.createElement('link');
+        style.href = browser.runtime.getURL('advanced-design.css');
+        style.type = 'text/css';
+        style.rel = 'stylesheet';
+        document.querySelector('head')?.append(style);
       }
       catch (e) {
 

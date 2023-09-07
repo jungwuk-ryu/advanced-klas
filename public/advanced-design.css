@@ -1,0 +1,8 @@
+/* 곡선 테두리 */
+.card.card-body.mb-4 {
+    border-radius: 20px; !important;
+}
+
+select.form-control.form-control-sm {
+    border-radius: 10px;
+}
