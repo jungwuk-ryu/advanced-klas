@@ -1,7 +1,7 @@
 import path from 'node:path';
-import { type Configuration } from 'webpack';
-import CopyPlugin from 'copy-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import { type Configuration } from 'webpack';
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const IS_PROD = NODE_ENV === 'production';
@@ -25,6 +25,14 @@ const config: Configuration = {
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
