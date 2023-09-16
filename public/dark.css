@@ -143,12 +143,6 @@ canvas {
     color: var(--custom-text-white-secondary);
 }
 
-
-/* 버튼 */
-.btn-gray {
-    border: 1px solid #fff !important;
-}
-
 .remain-none, .remain-none * {
     color: #ABFA8E !important;
 }
