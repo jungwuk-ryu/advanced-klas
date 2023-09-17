@@ -59,3 +59,8 @@ section {
 .btn-gray {
     background-color: #363131 !important;
 }
+
+/* 로딩 화면 제거 */
+.vld-overlay {
+    z-index: -1000 !important;
+}
