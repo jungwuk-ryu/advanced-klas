@@ -7,6 +7,17 @@ select.form-control.form-control-sm {
     border-radius: 10px;
 }
 
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+#yes-deadline {
+    border-collapse: collapse; !important;
+}
+
 /* 상단바 고정 */
 header {
     position: fixed;
