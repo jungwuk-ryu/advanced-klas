@@ -36,3 +36,15 @@ main,
 section {
     flex-grow: 1;
 }
+
+/* 향상된 버튼 */
+.btn2,
+.btn-learn,
+.btn-gray {
+    border-radius: 8px;
+    padding: 9px;
+}
+
+.btn-gray {
+    background-color: #363131 !important;
+}
