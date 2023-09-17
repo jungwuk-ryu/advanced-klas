@@ -24,3 +24,15 @@ main {
 .bg-top {
     backdrop-filter: blur(8px);
 }
+
+/* footer가 최하단에 있도록 합니다. 고정 아님! */
+body {
+    flex-direction: column;
+    display: flex !important;
+    height: 100vh;
+}
+
+main,
+section {
+    flex-grow: 1;
+}
