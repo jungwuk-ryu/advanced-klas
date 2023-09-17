@@ -15,6 +15,7 @@ header {
     backdrop-filter: blur(7px);
 }
 
+section,
 main {
     margin-top: 60px;
 }
