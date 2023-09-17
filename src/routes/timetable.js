@@ -71,7 +71,12 @@ const handleTimeTable = () => {
       }
 
       if (currentLectureTime !== 30) {
-        $(element).append(`<span class="time">${lectureStartTime[currentLectureTime]} ~ ${lectureEndTime[currentLectureTime + spanTime - 1]}</span>`);
+        if (lectureStartTime[currentLectureTime] === undefined && lectureEndTime[currentLectureTime + spanTime - 1] === undefined) {
+          $(element).append('<span class="time">미지정</span>');
+        }
+        else {
+          $(element).append(`<span class="time">${lectureStartTime[currentLectureTime]} ~ ${lectureEndTime[currentLectureTime + spanTime - 1]}</span>`);
+        }
       }
     });
   }
