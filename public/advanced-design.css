@@ -6,3 +6,15 @@
 select.form-control.form-control-sm {
     border-radius: 10px;
 }
+
+/* 상단바 고정 */
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 500;
+    backdrop-filter: blur(7px);
+}
+
+main {
+    margin-top: 60px;
+}
