@@ -34,6 +34,14 @@ function main() {
         style.type = 'text/css';
         style.rel = 'stylesheet';
         document.querySelector('head')?.append(style);
+
+        // 상단바 투명화
+        window.addEventListener('scroll', function () {
+          const scrollPercentage = (window.scrollY) / (document.body.scrollHeight - window.innerHeight);
+          const opacityValue = Math.max(1 - scrollPercentage, 0.5);
+          const bgTopElement = document.querySelector('.bg-top') as HTMLElement;
+          bgTopElement.style.setProperty('background-color', `rgba(58, 5, 31, ${opacityValue})`, 'important');
+        });
       }
       catch (e) {
 

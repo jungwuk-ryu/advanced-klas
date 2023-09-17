@@ -18,3 +18,8 @@ header {
 main {
     margin-top: 60px;
 }
+
+/* 상단바 투명화 */
+.bg-top {
+    backdrop-filter: blur(8px);
+}
