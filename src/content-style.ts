@@ -34,7 +34,6 @@ function main() {
         style.type = 'text/css';
         style.rel = 'stylesheet';
         document.querySelector('head')?.append(style);
-
         // 상단바 투명화
         window.addEventListener('scroll', function () {
           const scrollPercentage = (window.scrollY) / (document.body.scrollHeight - window.innerHeight);
@@ -42,6 +41,10 @@ function main() {
           const bgTopElement = document.querySelector('.bg-top') as HTMLElement;
           bgTopElement.style.setProperty('background-color', `rgba(58, 5, 31, ${opacityValue})`, 'important');
         });
+        // 배경 색 적용
+        document.querySelector('body')?.setAttribute('class', 'py-4 bg-light');
+        document.body.style.setProperty('padding-top', '0', 'important');
+        document.body.style.setProperty('padding-bottom', '0', 'important');
       }
       catch (e) {
 
