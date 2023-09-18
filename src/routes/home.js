@@ -89,35 +89,6 @@ export default () => {
 
   // 수강 과목 현황의 마감 정보 표시
   (() => {
-    // 뼈대 코드 렌더링
-    $('.subjectbox').prepend(`
-       <div class="card card-body mb-4">
-         <div class="bodtitle">
-           <p class="title-text">수강 과목 현황</p>
-         </div>
-         <table id="yes-deadline" style="width: 100%">
-           <colgroup>
-             <col width="21%">
-             <col width="25%">
-             <col width="25%">
-             <col width="25%">
-           </colgroup>
-           <thead>
-             <tr style="border-bottom: 1px solid #dce3eb; font-weight: bold; height: 30px">
-               <td></td>
-               <td>온라인 강의</td>
-               <td>과제</td>
-               <td>팀 프로젝트</td>
-             </tr>
-           </thead>
-           <tbody></tbody>
-         </table>
-         <div id="no-deadline" style="display: none; text-align: center">
-           <span style="color: green; font-weight: bold">남아있는 항목이 없습니다. 깔끔하네요! 😊</span>
-         </div>
-       </div>
-     `);
-
     // 변경된 과목에 따라 마감 정보 업데이트
     const updateDeadline = async (subjects) => {
       const promises = [];
@@ -295,7 +266,7 @@ export default () => {
       // 내용 생성 함수
       const createContent = (name, info) => {
         if (info.remainingTime === Infinity) {
-          return `<span style="color: green" class="remain-none">남아있는 ${name}가 없습니다!</span>`;
+          return '';
         }
 
         const remainingDay = Math.floor(info.remainingTime / 24);
@@ -303,57 +274,78 @@ export default () => {
 
         if (remainingDay === 0) {
           if (remainingHour === 0) {
-            return `<span style="color: red; font-weight: bold" class="remain-soon">${info.totalCount}개의 ${name} 중 ${info.remainingCount}개가 곧 마감입니다. 😱</span>`;
+            return `<span style="font-weight: bold; color: red; margin-right: 10px;" class="remain-soon">${info.totalCount}개의 ${name} 중 ${info.remainingCount}개가 곧 마감입니다. 😱</span>`;
           }
           else {
-            return `<span style="color: red; font-weight: bolder" class="remain-hour">${info.totalCount}개의 ${name} 중 <strong>${info.remainingCount}개</strong>가 <strong>${remainingHour}시간 후</strong> 마감입니다. 😭</span>`;
+            return `<span style=" font-weight: bolder; color: red; margin-right: 10px;" class="remain-hour">${info.totalCount}개의 ${name} 중 <strong>${info.remainingCount}개</strong>가 <strong>${remainingHour}시간 후</strong> 마감입니다. 😭</span>`;
           }
         }
         else if (remainingDay === 1) {
-          return `<span style="color: red" class="remain-today">${info.totalCount}개의 ${name} 중 <strong>${info.remainingCount}개</strong>가 <strong>1일 후</strong> 마감입니다. 😥</span>`;
+          return `<span style="color: red; margin-right: 10px;" class="remain-today">${info.totalCount}개의 ${name} 중 <strong>${info.remainingCount}개</strong>가 <strong>1일 후</strong> 마감입니다. 😥</span>`;
         }
         else {
-          return `<span class="will-remain">${info.totalCount}개의 ${name} 중 <strong>${info.remainingCount}개</strong>가 <strong>${remainingDay}일 후</strong> 마감입니다.</span>`;
+          return `<span style="color: blue; margin-right: 10px;" class="will-remain">${info.totalCount}개의 ${name} 중 <strong>${info.remainingCount}개</strong>가 <strong>${remainingDay}일 후</strong> 마감입니다.</span>`;
         }
       };
 
       // HTML 코드 생성
-      const trCode = sortedDeadline.reduce((acc, cur) => {
-        acc += `
+      const trCode = () => {
+        var acc = '';
+        for (let cur of Object.values(deadline)) {
+          let lecture = createContent('강의', cur.lecture);
+          let homework = createContent('과제', cur.homework);
+          let teamProject = createContent('팀 프로젝트', cur.teamProject);
+
+          if (lecture !== '' || homework !== '' || teamProject !== '') {
+            acc += `<!--subj:${cur.subjectName}-->
            <tr style="border-bottom: 1px solid #dce3eb; height: 30px">
-             <td style="font-weight: bold">
-               <span style="cursor: pointer" onclick="appModule.goLctrum('${cur.yearSemester}', '${cur.subjectCode}')">${cur.subjectName}</span>
-             </td>
              <td>
                <span style="cursor: pointer" onclick="appModule.goLctrumBoard('/std/lis/evltn/OnlineCntntsStdPage.do', '${cur.yearSemester}', '${cur.subjectCode}')">
-                 ${createContent('강의', cur.lecture)}
+                 ${lecture}
                </span>
              </td>
              <td>
                <span style="cursor: pointer" onclick="appModule.goLctrumBoard('/std/lis/evltn/TaskStdPage.do', '${cur.yearSemester}', '${cur.subjectCode}')">
-                 ${createContent('과제', cur.homework)}
+                 ${homework}
                <span>
              </td>
              <td>
                <span style="cursor: pointer" onclick="appModule.goLctrumBoard('/std/lis/evltn/PrjctStdPage.do', '${cur.yearSemester}', '${cur.subjectCode}')">
-                 ${createContent('팀 프로젝트', cur.teamProject)}
+                 ${teamProject}
                <span>
              </td>
            </tr>
          `;
+          }
+        }
 
         return acc;
-      }, '');
+      };
 
       // 렌더링
       if (isExistDeadline) {
-        $('#yes-deadline > tbody').html(trCode);
-        $('#yes-deadline').css('display', 'table');
-        $('#no-deadline').css('display', 'none');
-      }
-      else {
-        $('#yes-deadline').css('display', 'none');
-        $('#no-deadline').css('display', 'block');
+        let subjectList = document.querySelector('.subjectlist').querySelectorAll('li');
+
+        for (let subjEle of trCode().split('<!--subj:')) {
+          if (subjEle.indexOf('appModule.goLctrumBoard') === -1) continue;
+          let tokens = subjEle.split('-->');
+          let lectureName = tokens[0];
+
+          subjectList.forEach((value) => {
+            if (value.innerText.indexOf(lectureName) !== -1) {
+              let leftContainer = value.querySelector('.left');
+
+              let container = leftContainer.querySelector('#subjBox');
+              if (container === undefined || container === null) {
+                container = document.createElement('div');
+                container.setAttribute('id', 'subjBox');
+                leftContainer.append(container);
+              }
+
+              container.innerHTML = tokens[1];
+            }
+          });
+        }
       }
     };
 
