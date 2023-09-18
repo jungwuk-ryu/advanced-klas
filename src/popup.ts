@@ -22,7 +22,7 @@ browser.storage.sync.get(null, function (items) {
       throw new Error('Support alert not found');
     }
 
-    supportAlert.innerHTML = '해당 브라우저에서는 KLAS Helper 기능을 끌 수 없습니다.';
+    supportAlert.innerHTML = '해당 브라우저에서는 Advanced KLAS 기능을 끌 수 없습니다.';
     activeBtn.checked = true;
     return;
   }

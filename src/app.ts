@@ -26,7 +26,7 @@ import {
   // KLAS Helper 사용 여부 문구 추가
   $('.navtxt').prepend(`
     <span style="margin-right: 20px">
-      <a href="https://github.com/nbsp1221/klas-helper" target="_blank" rel="noopener">KLAS Helper</a> 사용 중
+      <a href="https://github.com/jungwuk-ryu/advanced-klas" target="_blank" rel="noopener">👑 Advanced KLAS</a>
     </span>
   `);
 

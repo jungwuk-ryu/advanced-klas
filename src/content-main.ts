@@ -45,9 +45,7 @@ async function main() {
       }
       else {
         document.querySelector('.navtxt span:nth-child(1)')!.innerHTML = (`
-        <a href="https://github.com/klas-helper/klas-helper" target="_blank" rel="noopener">KLAS Helper</a>
-        <a href="https://github.com/klas-helper/klas-helper-extension" target="_blank" rel="noopener">확장 프로그램</a>
-        사용 중
+        <a href="https://github.com/jungwuk-ryu/advanced-klas" target="_blank" rel="noopener">Advanced KLAS 👑</a>
         `);
       }
       clearInterval(waitTimer);

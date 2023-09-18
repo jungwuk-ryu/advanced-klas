@@ -1,9 +1,9 @@
 {
-  "name": "KLAS Helper",
+  "name": "Advanced KLAS",
   "manifest_version": 3,
-  "version": "2.0.3.0",
-  "description": "광운대학교 KLAS 사이트에 편리한 기능을 추가하는 브라우저 확장 프로그램",
-  "homepage_url": "https://github.com/klas-helper/klas-helper-extension",
+  "version": "1.0.0",
+  "description": "광운대학교 KLAS를 더욱 편리하게",
+  "homepage_url": "https://github.com/jungwuk-ryu/advanced-klas",
   "permissions": [
     "storage"
   ],
@@ -75,7 +75,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "update_url": "https://raw.githubusercontent.com/klas-helper/klas-helper-extension/main/update/manifest.json"
+      "update_url": "https://github.com/jungwuk-ryu/advanced-klas/update/manifest.json"
     }
   }
 }
