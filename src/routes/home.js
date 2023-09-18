@@ -23,6 +23,38 @@ export default () => {
     cards[1].setAttribute('style', 'flex: 9;'); // 수강과목
   })();
 
+  // 시간표, 캘린더 전환
+  (async () => {
+    const btn = document.createElement('button');
+    btn.innerText = '📅 일정 보기';
+    btn.style.width = '100%';
+    btn.style.marginBottom = '5px';
+    btn.setAttribute('class', 'btn2 btn-learn');
+    btn.setAttribute('id', 'toggleButton');
+
+    const subjectBox = document.querySelector('.subjectbox');
+    const schedule = subjectBox.querySelector('.scheduletitle').parentElement;
+    const calendar = subjectBox.querySelector('.calnotice').parentElement;
+    schedule.parentNode.insertBefore(calendar, schedule);
+    calendar.parentNode.insertBefore(btn, calendar);
+    calendar.style.display = 'none';
+
+    const toggleButton = document.getElementById('toggleButton');
+
+    toggleButton.addEventListener('click', function () {
+      if (schedule.style.display === 'none') {
+        schedule.style.display = 'block';
+        calendar.style.display = 'none';
+        btn.innerText = '📅 일정 보기';
+      }
+      else {
+        schedule.style.display = 'none';
+        calendar.style.display = 'block';
+        btn.innerText = '📚 시간표 보기';
+      }
+    });
+  })();
+
   // 기말 평가 안내문 표시
   (async () => {
     const settings = {
