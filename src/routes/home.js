@@ -10,6 +10,19 @@ export default () => {
   handleTimeTable();
   document.querySelector('.scheduletitle > select').addEventListener('change', handleTimeTable);
 
+  // 과목별 NOTICE와 수강과목을 한 라인에 추가
+  (async () => {
+    let cards = document.querySelector('.subjectbox').querySelectorAll('.card');
+    let cardRow = document.createElement('div');
+    cardRow.setAttribute('class', 'card-row');
+    cardRow.setAttribute('test', '');
+    cards[1].parentNode.insertBefore(cardRow, cards[1].nextSibling); // Row 추가
+    cardRow.appendChild(cards[2]); // 과목별 NOTICE
+    cardRow.appendChild(cards[1]); // 수강과목
+    cards[2].setAttribute('style', 'flex: 4; margin-right: 5px;'); // 과목별 NOTICE
+    cards[1].setAttribute('style', 'flex: 9;'); // 수강과목
+  })();
+
   // 기말 평가 안내문 표시
   (async () => {
     const settings = {

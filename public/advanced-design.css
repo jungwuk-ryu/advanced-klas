@@ -64,3 +64,24 @@ section {
 .vld-overlay {
     z-index: -1000 !important;
 }
+
+/* 과목별 NOTICE와 수강과목 목록을 한 줄에 */
+.card-row {
+    display: flex;
+    flex-direction: row;  /* 기본적으로 가로로 배치 */
+}
+
+@media (max-width: 1000px) {
+    .card-row {
+        flex-direction: column;  /* 세로로 배치 */
+    }
+}
+
+.subjecttypenotice li {
+    display: flex;
+    flex-direction: column;
+}
+
+.subjecttypenotice .right {
+    overflow: unset;
+}
