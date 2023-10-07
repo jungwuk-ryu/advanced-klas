@@ -1,4 +1,5 @@
 # 👑 Advanced KLAS Helper Extension
+![screenshot](https://github.com/jungwuk-ryu/advanced-klas/assets/29895665/4ceaf624-a1d1-4442-a7d6-207ea5b9febd)
 
 [![gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square)](https://gitmoji.dev)
 
